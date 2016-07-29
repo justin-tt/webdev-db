@@ -11,7 +11,7 @@ $(function() {
                 $("#setup").html(data.setup);
                 $("#punchline").html(data.punchline);
 
-                index = data.id;
+                index = data._id;
 
                 if (data.votes === undefined) {
                     $("#votes").html(0);
