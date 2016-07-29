@@ -1,0 +1,40 @@
+body {
+    font-family: 'Dosis', sans-serif;
+    background-color: #68099D;
+    margin: 20% 20% 20% 20%;
+    color: white;
+    font-size: 1.5rem;
+}
+
+a {
+    color: darkgray;
+}
+
+a:visited {
+    color: darkgray;
+}
+
+a:hover {
+    color: floralwhite;
+}
+
+h2 {
+    font-size: 3.0rem;
+    padding: 0 25% 0 0;
+}
+
+.button {
+    border-radius: 6px;
+    font-family: 'Dosis', sans-serif;
+    width: 15%;
+    color: white;
+    background-color: #570784;
+}
+
+#punchline {
+    font-style: italic;
+}
+
+#votes-container {
+    font-size: 0.7rem;
+}
