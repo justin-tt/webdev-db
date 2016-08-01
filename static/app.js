@@ -80,6 +80,7 @@ $(function() {
                 $('#createJokeSetup').val("");
                 $('#createJokePunchline').val("");
                 $('#createJokeSuccess').text("Joke created successfully. {setup: " + setup + ", punchline: " + punchline + "}");
+                refreshJokes();
             }
         });
     });

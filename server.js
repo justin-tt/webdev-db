@@ -66,8 +66,6 @@ app.post('/upvote', function(req, res) {
                 res.send(result.value);
             }
         );
-
-        // res.send(joke);
     });
 });
 
