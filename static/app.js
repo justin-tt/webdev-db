@@ -84,18 +84,7 @@ $(function() {
         });
     });
 
-    $("#refreshJokes").on('click', function() {
-        $.get("/alljokes", function(data) {
-            console.log(data);
-            var optionsHTML = "";
-            $('#allJokes').empty();
-            data.forEach(function(element, index, array) {
-                console.log(element, index, array);
-                // http://stackoverflow.com/questions/1801499/how-to-change-options-of-select-with-jquery
-                $('#allJokes').append($("<option></option>").attr("value",element._id).text(element.setup));
-            });
-        });
-    });
+    $("#refreshJokes").on('click', refreshJokes());
 
     $("#deleteJoke").on('click', function() {
        $.ajax({
@@ -108,8 +97,8 @@ $(function() {
                }
            ),
             success: function(data, status, xhr) {
-               // TODO: refresh menu
                 console.log($('#allJokes').val());
+                refreshJokes();
             }
        })
     });
@@ -122,5 +111,18 @@ $(function() {
         } else {
             $("#votes").css('color', 'white');
         }
-    };
+    }
+
+    function refreshJokes() {
+        $.get("/alljokes", function(data) {
+            console.log(data);
+            var optionsHTML = "";
+            $('#allJokes').empty();
+            data.forEach(function(element, index, array) {
+                console.log(element, index, array);
+                // http://stackoverflow.com/questions/1801499/how-to-change-options-of-select-with-jquery
+                $('#allJokes').append($("<option></option>").attr("value",element._id).text(element.setup));
+            });
+        });
+    }
 });

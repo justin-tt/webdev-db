@@ -152,11 +152,19 @@ app.get('/alljokes', function(req, res) {
 
 app.post('/deletejoke', function(req, res) {
     console.log("Deleting: " + req.body.id);
-    // TODO: actually delete it from the database
+
+    mongodb.connect(uri, function(err, db) {
+        var collection = db.collection('jokes');
+        collection.deleteOne({_id: ObjectId(req.body.id)},
+            function(err, results){
+                res.send(results);
+                db.close();
+            }
+        );
+    });
 });
 
-// TODO: READ/UPDATE/DELETE Jokes
+// TODO: UPDATE Jokes
 // Have a drop down list of jokes (READ)
 // this dropdown should have a function that re-loads db documents when jokes are added/deleted/edited
 // to edit (UPDATE)
-// or delete (DELETE)
