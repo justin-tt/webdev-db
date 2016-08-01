@@ -48,15 +48,8 @@ app.post('/upvote', function(req, res) {
 
     mongodb.connect(uri, function(err, db) {
         var collection = db.collection('jokes');
-        // var joke = collection.findOne({ _id: ObjectId(jokeId) }, function(err, result) {
-        //     console.log(result);
-        //     result.votes++;
-        //     console.log(result);
-        //     // TODO: Write this vote update to database!
-        //     res.send(result);
-        // });
         // https://docs.mongodb.com/manual/reference/method/db.collection.findOneAndUpdate/
-        var joke = collection.findOneAndUpdate(
+        collection.findOneAndUpdate(
             { _id: ObjectId(jokeIndex) },
             { $inc: { "votes" : 1 }},
             { returnNewDocument: true },
@@ -76,14 +69,6 @@ app.post('/downvote', function(req, res) {
 
     mongodb.connect(uri, function(err, db) {
         var collection = db.collection('jokes');
-        // var joke = collection.findOne({ _id: ObjectId(jokeId) }, function(err, result) {
-        //     console.log(result);
-        //     result.votes--;
-        //     console.log(result);
-        //     // TODO: Write this vote update to database!
-        //     res.send(result);
-        // });
-
         // https://docs.mongodb.com/manual/reference/operator/update/  INCREMENT
         collection.findOneAndUpdate(
             { _id: ObjectId(jokeIndex) },
