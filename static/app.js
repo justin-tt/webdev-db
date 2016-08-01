@@ -99,6 +99,7 @@ $(function() {
            ),
             success: function(data, status, xhr) {
                 console.log($('#allJokes').val());
+                $('#deleteJokeSuccess').text("Joke deleted successfully. {setup: " + $('#allJokes option:selected').text() + "}");
                 refreshJokes();
             }
        })
