@@ -29,7 +29,7 @@ $(function() {
         // $.post("/upvote");
         $.ajax({
             url: '/upvote',
-            type: 'POST',
+            type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify({ id: index }),
 
@@ -45,7 +45,7 @@ $(function() {
         // $.post("/downvote");
         $.ajax({
             url: '/downvote',
-            type: 'POST',
+            type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify({ id: index }),
 
@@ -90,7 +90,7 @@ $(function() {
     $("#deleteJoke").on('click', function() {
        $.ajax({
            url: 'deletejoke',
-           type: 'POST',
+           type: 'DELETE',
            contentType: 'application/json',
            data: JSON.stringify(
                {

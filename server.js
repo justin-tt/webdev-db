@@ -46,7 +46,7 @@ app.get('/jokes', function(req, res) {
     });
 });
 
-app.post('/upvote', function(req, res) {
+app.put('/upvote', function(req, res) {
     console.log("Someone tried to upvote something");
     console.log(req.body);
     var jokeIndex = req.body.id;
@@ -62,7 +62,7 @@ app.post('/upvote', function(req, res) {
     );
 });
 
-app.post('/downvote', function(req, res) {
+app.put('/downvote', function(req, res) {
     console.log("Someone tried to downvote something.");
     console.log(req.body);
     var jokeIndex = req.body.id;
@@ -121,7 +121,7 @@ app.get('/alljokes', function(req, res) {
     );
 });
 
-app.post('/deletejoke', function(req, res) {
+app.delete('/deletejoke', function(req, res) {
     console.log("Deleting: " + req.body.id);
     collection.deleteOne({_id: ObjectId(req.body.id)},
         function(err, results){
