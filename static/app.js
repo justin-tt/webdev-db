@@ -26,7 +26,6 @@ $(function() {
     );
 
     $("#upvote").on("click", function() {
-        // $.post("/upvote");
         $.ajax({
             url: '/upvote',
             type: 'PUT',
@@ -42,7 +41,6 @@ $(function() {
     });
 
     $("#downvote").on("click", function() {
-        // $.post("/downvote");
         $.ajax({
             url: '/downvote',
             type: 'PUT',
@@ -57,14 +55,12 @@ $(function() {
         });
     });
 
-    // should have it's own file for the database page
     $("#createJoke").submit(function(event) {
         event.preventDefault();
 
         var setup = $('#createJokeSetup').val();
         var punchline = $('#createJokePunchline').val();
 
-        // https://www.airpair.com/js/jquery-ajax-post-tutorial
         $.ajax({
             url: '/createJoke',
             type: 'POST',
@@ -122,7 +118,7 @@ $(function() {
             $('#allJokes').empty();
             data.forEach(function(element, index, array) {
                 console.log(element, index, array);
-                // http://stackoverflow.com/questions/1801499/how-to-change-options-of-select-with-jquery
+
                 $('#allJokes').append($("<option></option>").attr("value",element._id).text(element.setup));
             });
         });
