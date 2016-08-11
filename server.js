@@ -6,11 +6,6 @@ var app = express();
 var port = 8888;
 var db, collection;
 
-// setting ENV variables in windows
-// https://technet.microsoft.com/en-us/library/ff730964.aspx
-// [Environment]::SetEnvironmentVariable("TestVariable", "Test value.", "User")
-// requires restarting of powershell to view variables
-
 var uri = "mongodb://" + process.env.MONGOLAB_USER + ":" + process.env.MONGOLAB_PASSWORD + "@ds023485.mlab.com:23485/webdev";
 var jokes=[{setup:"Our wedding was so beautiful,",punchline:"even the cake was in tiers", votes: 0},{setup:"I'm reading a book on the history of glue",punchline:"I just can't seem to put it down", votes: 0},{setup:"What do you call an Argentinian with a rubber toe?",punchline:"Roberto", votes: 0}];
 
@@ -50,7 +45,6 @@ app.put('/upvote', function(req, res) {
     console.log("Someone tried to upvote something");
     console.log(req.body);
     var jokeIndex = req.body.id;
-    // https://docs.mongodb.com/manual/reference/method/db.collection.findOneAndUpdate/
     collection.findOneAndUpdate(
         { _id: ObjectId(jokeIndex) },
         { $inc: { "votes" : 1 }},
@@ -66,7 +60,6 @@ app.put('/downvote', function(req, res) {
     console.log("Someone tried to downvote something.");
     console.log(req.body);
     var jokeIndex = req.body.id;
-    // https://docs.mongodb.com/manual/reference/operator/update/  INCREMENT
     collection.findOneAndUpdate(
         { _id: ObjectId(jokeIndex) },
         { $inc: { "votes" : -1 }},

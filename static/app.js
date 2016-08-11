@@ -2,6 +2,7 @@ var index = 0;
 
 $(function() {
     $("#setup, #punchline, #voting, #votes-container").hide();
+    refreshJokes();
 
     $("#getJoke").click(
         function() {
