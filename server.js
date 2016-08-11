@@ -111,12 +111,9 @@ app.post('/createJoke', function(req, res) {
 });
 
 app.get('/alljokes', function(req, res) {
-    var jokesArray;
-    // http://blog.modulus.io/mongodb-tutorial
     collection.find().toArray(
-        function(err, result) {
-            jokesArray = result;
-            res.send(jokesArray)
+        function(err, resultArray) {
+            res.send(resultArray)
         }
     );
 });

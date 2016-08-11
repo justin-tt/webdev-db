@@ -113,13 +113,13 @@ $(function() {
 
     function refreshJokes() {
         $.get("/alljokes", function(data) {
-            console.log(data);
             var optionsHTML = "";
             $('#allJokes').empty();
             data.forEach(function(element, index, array) {
-                console.log(element, index, array);
-
-                $('#allJokes').append($("<option></option>").attr("value",element._id).text(element.setup));
+                $('#allJokes')
+                    .append($("<option></option>")
+                    .attr("value",element._id)
+                    .text(element.setup + " " + element.punchline));
             });
         });
     }
