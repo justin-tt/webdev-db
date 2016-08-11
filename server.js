@@ -31,7 +31,6 @@ app.get('/jokes', function(req, res) {
     collection.count(function(err, count) {
 
         var randomNumber = Math.floor(Math.random() * count);
-        console.log(count + " jokes found in database.");
 
         collection.find().limit(-1).skip(randomNumber).next(
             function(err, results) {
@@ -42,23 +41,18 @@ app.get('/jokes', function(req, res) {
 });
 
 app.put('/upvote', function(req, res) {
-    console.log("Someone tried to upvote something");
-    console.log(req.body);
     var jokeIndex = req.body.id;
     collection.findOneAndUpdate(
         { _id: ObjectId(jokeIndex) },
         { $inc: { "votes" : 1 }},
         function(err, result) {
             result.value.votes++;
-            console.log(result);
             res.send(result.value);
         }
     );
 });
 
 app.put('/downvote', function(req, res) {
-    console.log("Someone tried to downvote something.");
-    console.log(req.body);
     var jokeIndex = req.body.id;
     collection.findOneAndUpdate(
         { _id: ObjectId(jokeIndex) },
@@ -66,7 +60,6 @@ app.put('/downvote', function(req, res) {
         { returnNewDocument: true },
         function(err, result) {
             result.value.votes--;
-            console.log(result);
             res.send(result.value);
         }
     );
@@ -92,9 +85,7 @@ app.get('/updatejokes', function(req, res) {
     res.sendFile(__dirname + '/static/updateJokes.html');
 });
 
-app.post('/createJoke', function(req, res) {
-
-    console.log('Creating joke: ', req.body);
+app.post('/createjoke', function(req, res) {
 
     collection.insertOne(req.body,
         function(err, results){
@@ -112,7 +103,6 @@ app.get('/alljokes', function(req, res) {
 });
 
 app.delete('/deletejoke', function(req, res) {
-    console.log("Deleting: " + req.body.id);
     collection.deleteOne({_id: ObjectId(req.body.id)},
         function(err, results){
             res.send(results);

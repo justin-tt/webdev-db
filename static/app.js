@@ -63,7 +63,7 @@ $(function() {
         var punchline = $('#createJokePunchline').val();
 
         $.ajax({
-            url: '/createJoke',
+            url: '/createjoke',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(
@@ -82,7 +82,9 @@ $(function() {
         });
     });
 
-    $("#refreshJokes").on('click', refreshJokes());
+    $("#refreshJokes").on('click', function() {
+        refreshJokes();
+    });
 
     $("#deleteJoke").on('click', function() {
        $.ajax({
@@ -95,7 +97,6 @@ $(function() {
                }
            ),
             success: function(data, status, xhr) {
-                console.log($('#allJokes').val());
                 $('#deleteJokeSuccess').text("Joke deleted successfully. {setup: " + $('#allJokes option:selected').text() + "}");
                 refreshJokes();
             }
